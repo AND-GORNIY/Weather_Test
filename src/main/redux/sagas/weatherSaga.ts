@@ -7,7 +7,6 @@ const dayWeatherPath = 'current'
 export function* dayWeatherSaga({ data }: { data: 'string' }) {
   try {
     const response = yield call(getData, dayWeatherPath)
-    // console.log('response', response, data)
     if (response.status >= 400) {
       // add error handling
     } else {
@@ -17,6 +16,6 @@ export function* dayWeatherSaga({ data }: { data: 'string' }) {
       )
     }
   } catch (err) {
-    console.log('ERR', err)
+    console.warn('ERR', err)
   }
 }

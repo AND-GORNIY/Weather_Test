@@ -8,8 +8,11 @@ const headers = {
   'Content-Type': 'application/json',
 }
 
-export const getData = async (path: string) => {
-  const response = await fetch(`${baseURL}/${path}.json?key=${apiKey}&q=${location}&dt=2022-08-26`, {
+export const getData = async (path: string, params: string[] = []) => {
+  const stringParams = params.join('&')
+  const url = `${baseURL}/${path}.json?key=${apiKey}&q=${location}`
+  const urlWithParams = stringParams ? `${url}&${stringParams}` : url
+  const response = await fetch(urlWithParams, {
     method: 'GET',
     headers,
   })
